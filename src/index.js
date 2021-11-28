@@ -1,13 +1,19 @@
 import React from 'react'
 import styles from './styles.module.css'
-import { CustomContext } from '../example/src/CustomContext'
+import { SubCustomContext } from './SubCustomContext'
 
-export function ExampleComponent() {
+function ExampleComponent() {
   return (
-    <CustomContext.Consumer>
+    <SubCustomContext.Consumer>
       {(value)=>(
-        <div className={styles.test}>Example Component: {value}</div>
+        value.increment("ExampleComponent") === undefined && console.log(value)===undefined &&  
+        <div className={styles.test}>Example Component: {value.value} and counter == {value.counterValue()}</div>
       )}
-    </CustomContext.Consumer>
+    </SubCustomContext.Consumer>
   )
+}
+
+export {
+  SubCustomContext,
+  ExampleComponent
 }
